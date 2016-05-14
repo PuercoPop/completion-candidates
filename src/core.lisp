@@ -12,8 +12,9 @@
 (defun sort (candidate-list pattern completion-backend)
   "Return the sorted CANDIDATE-LIST according the SCORE."
   (cl:stable-sort candidate-list
-                  #'(lambda (candidate)
-                      (score candidate pattern completion-backend))))
+                  #'>
+                  :key #'(lambda (candidate)
+                           (score candidate pattern completion-backend))))
 
 
 (defclass completion-backend ()
