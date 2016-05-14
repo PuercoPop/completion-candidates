@@ -20,10 +20,11 @@
       (make-instance 'path-completion :directories directories)
       (make-instance 'path-completion)))
 
-(defmethod candidates-for (pattern (backend path-completion))
+(defmethod candidates-for append (pattern (backend path-completion))
   "Return a list containing all the (executable?) files found in the
   PATH-DIRECTORIES of the BACKEND."
   (declare (ignore pattern))
-  (alexandria:mappend #'uiop:directory-files
-                    (split-sequence:split-sequence #\:
-                                                   (uiop:getenv "PATH"))))
+  (mapcar #'file-namestring
+          (alexandria:mappend #'uiop:directory-files
+                              (split-sequence:split-sequence #\:
+                                                             (uiop:getenv "PATH")))))
