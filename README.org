@@ -1,0 +1,23 @@
+#+TITLE: Completion candidates
+
+Completion candidates is a library to help you provide completion candidates in
+an *extensible* manner. The completion-backend selects the strategy to find
+(*candidates-for*) and sort (*score*) the candidates. Because the results of all applicable methods for *candidates-for* are collected one can add different search strategies through mix-ins.
+
+Look at the file example.lisp for an example to complete according to file
+names present in *$PATH*
+
+* Roadmap to 1.0
+
+** How to handle cache
+   Include filewatchers to do cache invalidation in example.lisp to flesh out
+   the API
+
+** Symbol-completion
+** c-p-c completion
+
+* Author
+  
+  Javier Olaechea <pirata@gmail.com>
+* License
+  AGPLv3
