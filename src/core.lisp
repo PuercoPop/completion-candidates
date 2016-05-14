@@ -20,3 +20,6 @@
 (defclass completion-backend ()
   ()
   (:documentation "The base class for all completion backends."))
+
+(defmethod candidates-for :around (pattern (backend completion-backend))
+  (sort (call-next-method) pattern backend))
