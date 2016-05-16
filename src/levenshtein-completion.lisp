@@ -18,7 +18,7 @@
 
 (defclass levenshtein-completion-backend (completion-backend)
   ()
-  (:documentation "Score the candidates according the levenshtein distance."))
+  (:documentation "Score the candidates according to the levenshtein distance."))
 
 (defmethod score ((candidate string) (pattern string) (backend levenshtein-completion-backend))
   ""
