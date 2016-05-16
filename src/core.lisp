@@ -39,3 +39,13 @@
 
 (defmethod candidates-for :around (pattern (backend completion-backend))
   (sort (call-next-method) pattern backend))
+
+(defclass candidate ()
+  ((candidate :initarg :candidate
+              :reader candidate
+              :documentation "The raw candidate object.")
+   (score :initarg :score
+          :initform 0
+          :reader candidate-score
+          :documentation "How idea is the CANDIDATE on a scale from 0 to 1."))
+  (:documentation "A record for candidates for completion."))
