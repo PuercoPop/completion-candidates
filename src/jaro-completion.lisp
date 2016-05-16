@@ -14,13 +14,18 @@
 ;;;;    License along with this program.  If not, see
 ;;;;    <http://www.gnu.org/licenses/>
 
-(defpackage #:completion-candidates
-  (:use #:cl)
-  (:shadow #:sort)
-  (:export
-   #:candidates-for
-   #:score
-   #:sort
-   #:completion-backend
-   #:levenshtein-completion-backend
-   #:jaro-completion-backend))
+(in-package #:completion-candidates)
+
+(defclass jaro-completion-backend (completion-backend)
+  ()
+  (:documentation "Score the candidates according to the jaro distance."))
+
+(defmethod score ((candidate string) (pattern string) (backend jaro-completion-backend))
+  ""
+  (vas-string-metrics:jaro-distance candidate pattern))
+
+(defmethod candidates-for :around (pattern (backend levenshtein-completion-backend))
+  "Filter all the candidates that have zero similariry."
+  (remove-if #'zerop (call-next-method)
+             :key #'(lambda (candidate)
+                      (vas-string-metrics:jaro-distance candidate pattern))))

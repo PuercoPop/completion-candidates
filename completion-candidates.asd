@@ -7,4 +7,5 @@
   :pathname "src/"
   :components ((:file "packages")
                (:file "core")
-               (:file "levenshtein-completion")))
+               (:file "levenshtein-completion")
+               (:file "jaro-completion")))
