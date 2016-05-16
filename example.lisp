@@ -25,7 +25,7 @@
 
 (in-package #:path-completion)
 
-(defclass path-completion (levenshtein-completion-backend)
+(defclass path-completion (jaro-completion-backend)
   ((directories :initarg :directories
                 :initform (split-sequence #\: (uiop:getenv "PATH"))
                 :reader path-directories
