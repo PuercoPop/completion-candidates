@@ -8,4 +8,5 @@
   :components ((:file "packages")
                (:file "core")
                (:file "levenshtein-completion")
-               (:file "jaro-completion")))
+               (:file "jaro-completion")
+               (:file "symbol-candidate")))
