@@ -49,3 +49,13 @@
           :reader candidate-score
           :documentation "How idea is the CANDIDATE on a scale from 0 to 1."))
   (:documentation "A record for candidates for completion."))
+
+;; Because the scoring and sorting works on completion we need a way to view
+;; the candidate as a string.
+;; XXX: Would it be better to take advantage of print-object instead?
+(defgeneric candidate-string (candidate)
+  (:documentation "Transform the candidate object to a string."))
+
+(defmethod print-object ((obj candidate) stream)
+  (print-unreadable-object (obj stream :type t)
+    (format stream "~A, Score: ~4,2F%" (candidate-string obj) (* (candidate-score obj) 100))))
