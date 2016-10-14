@@ -30,11 +30,10 @@
 (defclass package-completion-backend (jaro-completion-backend)
   ()
   ;; TODO:
-  ;; - If the pattern matches exactly one package return only that candidate
-  ;; instead.
   ;; - Handle package nicknames
   (:documentation "Collect all packages whose name has a non-zero similarity
-  with PATTERN."))
+  with PATTERN. If the pattern matches exactly one package return only that
+  candidate instead."))
 
 (defclass package-candidate (candidate)
   ())
@@ -57,6 +56,10 @@ pattern matches exactly one package return only that candidate instead."
       (let ((candidate-score (score (package-name package)
                                     pattern
                                    backend)))
+
+        (when (eql 1 candidate-score)
+          (return-from candidates-for (list (make-package-candidate package candidate-score))))
+
         (when (not (zerop candidate-score))
           (push (make-package-candidate package candidate-score)
                 result))))))
