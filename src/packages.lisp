@@ -18,9 +18,16 @@
   (:use #:cl)
   (:shadow #:sort)
   (:export
+   ;; Protocol
    #:candidates-for
    #:score
    #:sort
    #:completion-backend
+   ;; Candidates
+   #:candidate
+   #:candidate-score
+   #:make-candidate
+   #:candidate-string
+   ;; Built-in implementations
    #:levenshtein-completion-backend
    #:jaro-completion-backend))

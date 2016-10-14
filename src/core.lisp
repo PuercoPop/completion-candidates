@@ -40,6 +40,9 @@
 (defmethod candidates-for :around (pattern (backend completion-backend))
   (sort (call-next-method) pattern backend))
 
+
+
+;; The candidate protocol
 (defclass candidate ()
   ((candidate :initarg :candidate
               :reader candidate
@@ -47,7 +50,7 @@
    (score :initarg :score
           :initform 0
           :reader candidate-score
-          :documentation "How idea is the CANDIDATE on a scale from 0 to 1."))
+          :documentation "Ranks how ideal the CANDIDATE is on a scale from 0 to 1."))
   (:documentation "A record for candidates for completion."))
 
 ;; Because the scoring and sorting works on completion we need a way to view
@@ -59,3 +62,8 @@
 (defmethod print-object ((obj candidate) stream)
   (print-unreadable-object (obj stream :type t)
     (format stream "~A, Score: ~4,2F%" (candidate-string obj) (* (candidate-score obj) 100))))
+
+(defun make-candidate (candidate score)
+  (make-instance 'candidate
+                 :candidate candidate
+                 :score score))

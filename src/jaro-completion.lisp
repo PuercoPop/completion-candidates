@@ -21,7 +21,6 @@
   (:documentation "Score the candidates according to the jaro distance."))
 
 (defmethod score ((candidate string) (pattern string) (backend jaro-completion-backend))
-  ""
   (vas-string-metrics:jaro-distance candidate pattern))
 
 (defmethod candidates-for :around (pattern (backend levenshtein-completion-backend))
