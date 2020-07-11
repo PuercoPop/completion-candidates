@@ -1,10 +1,9 @@
-# Overview
+#+TITLE: Completion Candidate's Manual
+
+* Overview
 
 Completion Candidates is a framework to provide completions. That is
 given a pattern it provides alternatives to what that pattern may
 refer to. It is inspired by [helm]. However unlike Helm it takes
 advantage of CLOS features that are not present in [EIEIO],
 method-combinations in particular.
-
-[helm]: https://emacs-helm.github.io/helm/
-[EIEIO]: https://www.gnu.org/software/emacs/manual/html_node/eieio/index.html
