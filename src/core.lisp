@@ -53,9 +53,8 @@
           :documentation "Ranks how ideal the CANDIDATE is on a scale from 0 to 1."))
   (:documentation "A record for candidates for completion."))
 
-;; Because the scoring and sorting works on completion we need a way to view
-;; the candidate as a string.
-;; XXX: Would it be better to take advantage of print-object instead?
+;; Because the scoring and sorting works by comparing strings we need
+;; to map each candidate to a string.
 (defgeneric candidate-string (candidate)
   (:documentation "Transform the candidate object to a string."))
 
