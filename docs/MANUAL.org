@@ -7,3 +7,19 @@ given a pattern it provides alternatives to what that pattern may
 refer to. It is inspired by [helm]. However unlike Helm it takes
 advantage of CLOS features that are not present in [EIEIO],
 method-combinations in particular.
+
+* Usage
+** How do I register a action for certain candidates?
+
+The way to inform others that an action is applicable for the
+candidate is to define method that specializes on the candidate class
+you want. For example if you want to make the action, =open-file=,
+available for files you would write:
+
+#+begin_src lisp
+  (defmethod action-for append ((candidate file-candidate))
+    'open-file)
+#+end_src
+
+The symbol must refer to a function that takes a single parameter as a
+result, the candidate.
